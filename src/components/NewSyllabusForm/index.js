@@ -11,7 +11,6 @@ import { useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export const NewSyllabusForm = (props) => {
-  console.log("props: ", props);
   const titleRef = useRef();
   const descriptionRef = useRef();
 
@@ -42,19 +41,17 @@ export const NewSyllabusForm = (props) => {
               id="title"
               label="Syllabus Title"
               fullWidth
-              // value={props.editForm.title}
+              value={props.isEdit.title}
               helperText=""
-              // onChange={handleTitleChange}
               inputRef={titleRef}
             />
             <TextField
               margin="dense"
               id="Description"
               label="Syllabus Description"
-              // value={props.editForm.description}
+              value={props.isEdit.description}
               fullWidth
               helperText=""
-              // onChange={handleDescriptionChange}
               inputRef={descriptionRef}
             />
           </DialogContent>

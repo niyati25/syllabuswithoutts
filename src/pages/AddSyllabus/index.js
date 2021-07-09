@@ -34,9 +34,10 @@ const AddSyllabus = (props) => {
   const initial_data = [];
   const [openSyllabusForm, setOpenSyllabusForm] = useState(false);
   const [syllabusList, setSyllabusList] = useState(initial_data);
-  const [isEdit, setIsEdit] = useState(false);
+  const [isEdit, setIsEdit] = useState([]);
 
   const handleClickOpen = () => {
+    setIsEdit([]);
     setOpenSyllabusForm(true);
   };
   const handleClose = () => {
@@ -56,16 +57,11 @@ const AddSyllabus = (props) => {
     setSyllabusList(newSyllabusList);
   };
   const handleEdit = (id) => {
-    // console.log("id: ", id);
     setOpenSyllabusForm(true);
-    setIsEdit(true);
     const editedCard = syllabusList.filter((x) => x.id === id);
-    // console.log("editedCard: ", editedCard[0]);
-    editForm(editedCard[0]);
-  };
-  const editForm = (obj) => {
-    console.log("obj: ", obj);
-    return obj;
+    var newObj = Object.assign({}, ...editedCard);
+    setIsEdit(newObj);
+    console.log("IsEdit: ", isEdit);
   };
 
   return (
@@ -92,7 +88,7 @@ const AddSyllabus = (props) => {
               open={openSyllabusForm}
               handleClose={handleClose}
               onSave={handleFormSave}
-              editForm={() => editForm()}
+              isEdit={isEdit}
             />
           ) : (
             <>
